@@ -1,0 +1,90 @@
+/* General body and typography settings */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f7f7;
+}
+
+/* Header and navigation styling */
+header {
+  background: #eee;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Container for main content */
+.container {
+  padding: 20px;
+}
+
+/* Flash messages */
+.flash {
+  background-color: #ffd;
+  padding: 10px;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  max-width: 800px;
+}
+
+/* Calendar grid styling */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Styling for each day square */
+.day {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 80px;
+  position: relative;
+  background: #fff; /* default background */
+}
+
+/* Date number in the top right corner of a day */
+.day .date {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-weight: bold;
+}
+
+/* Profit/loss value inside a day square */
+.day .pl {
+  font-size: 1.2em;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Coloring for profit, loss, and neutral days */
+.profit {
+  background-color: #d4edda;  /* light green */
+}
+
+.loss {
+  background-color: #f8d7da;  /* light red */
+}
+
+.neutral {
+  background-color: #fefefe;  /* white or neutral */
+}
+
+/* Total profit/loss section styling */
+.total-pl {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 1.4em;
+  padding: 10px;
+  border-top: 2px solid #ccc;
+}

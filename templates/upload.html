@@ -1,0 +1,14 @@
+<!-- templates/upload.html -->
+{% extends "base.html" %}
+
+{% block title %}Upload CSV{% endblock %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 20px auto;">
+  <h2>Upload CSV File to Populate Database</h2>
+  <form method="post" enctype="multipart/form-data">
+    <p><input type="file" name="file" accept=".csv"></p>
+    <p><input type="submit" value="Upload"></p>
+  </form>
+</div>
+{% endblock %}

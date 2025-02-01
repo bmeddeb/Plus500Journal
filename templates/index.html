@@ -1,0 +1,42 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Trading Calendar{% endblock %}
+
+{% block content %}
+<div class="header" style="text-align: center; margin-bottom: 20px;">
+  <h2>Trading Calendar for {{ month }}/{{ year }}</h2>
+  <p>
+    <a href="{{ url_for('index', month=(month - 1) if month > 1 else 12, year=(year if month > 1 else year - 1)) }}">Previous Month</a> |
+    <a href="{{ url_for('index', month=(month + 1) if month < 12 else 1, year=(year if month < 12 else year + 1)) }}">Next Month</a>
+  </p>
+</div>
+
+<div class="calendar" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; max-width: 800px; margin: 0 auto;">
+  {% for week in month_days %}
+    {% for day in week %}
+      {% if day == 0 %}
+        <div class="day" style="border: 1px solid #ccc; padding: 10px; min-height: 80px;"></div>
+      {% else %}
+        {% set day_str = "%04d-%02d-%02d"|format(year, month, day) %}
+        {% set pl = daily_pl.get(day_str, 0) %}
+        {% if pl > 0 %}
+          {% set css_class = "day profit" %}
+        {% elif pl < 0 %}
+          {% set css_class = "day loss" %}
+        {% else %}
+          {% set css_class = "day neutral" %}
+        {% endif %}
+        <div class="{{ css_class }}" style="border: 1px solid #ccc; padding: 10px; min-height: 80px; position: relative;">
+          <div class="date" style="position: absolute; top: 5px; right: 5px; font-weight: bold;">{{ day }}</div>
+          <div class="pl" style="margin-top: 20px; text-align: center;">{{ "{:.2f}".format(pl) }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</div>
+
+<div class="total-pl" style="max-width: 800px; margin: 20px auto; text-align: center;">
+  <h3>Total Profit/Loss for the Month: {{ "{:.2f}".format(total_month_pl) }}</h3>
+</div>
+{% endblock %}
